@@ -2,27 +2,19 @@ name: Build WebRTC Android AAR
 
 on:
   workflow_dispatch:
-    inputs:
-      webrtc_branch:
-        description: 'WebRTC branch (ör: branch-heads/7258)'
-        required: true
-        default: 'branch-heads/7258'
-      target_arch:
-        description: 'Hedef mimariler'
-        required: true
-        default: 'armeabi-v7a,arm64-v8a'
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout (boş repo bile olsa gerekiyor)
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Build WebRTC Android AAR
         uses: bentleypark/webrtc-android-builder@v1.3.0
         with:
-          webrtc_branch: ${{ github.event.inputs.webrtc_branch }}
-          target_arch: ${{ github.event.inputs.target_arch }}
-          # Slack vs istemiyoruz şimdilik
+          # ŞİMDİLİK M136 LEGACY BRANCH'İ KULLANALIM (senin şu anki prod branch'inle aynı)
+          webrtc_branch: 'branch-heads/7103'
+          # ARCH'LERİ BURAYA SABİT YAZIYORUZ
+          target_arch: 'armeabi-v7a,arm64-v8a'
